@@ -1,0 +1,33 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: NFTlend
+    network: sepolia
+    source:
+      address: "0xed936efD8C10b5A2c89F2614Cc026880a6A19371"
+      abi: NFTlend
+      startBlock: 3804438
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ItemCancelled
+        - ItemListed
+        - ItemLoaned
+        - LoanPayed
+      abis:
+        - name: NFTlend
+          file: ./abis/NFTlend.json
+      eventHandlers:
+        - event: ItemCancelled(indexed address,indexed address,indexed uint256)
+          handler: handleItemCancelled
+        - event: ItemListed(indexed address,indexed address,indexed uint256,uint256,uint256,uint256)
+          handler: handleItemListed
+        - event: ItemLoaned(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleItemLoaned
+        - event: LoanPayed(indexed address,indexed address,indexed uint256,uint256)
+          handler: handleLoanPayed
+      file: ./src/nf-tlend.ts

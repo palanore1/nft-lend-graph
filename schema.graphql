@@ -1,0 +1,59 @@
+type ActiveItem @entity {
+  id: ID!
+  lender: Bytes!
+  borrower: Bytes!
+  nftAddress: Bytes!
+  tokenId: BigInt!
+  minLoanValue: BigInt
+  interestRate: BigInt
+  loanPeriod: BigInt
+}
+
+type ActiveLoan @entity {
+  id: ID!
+  lender: Bytes!
+  borrower: Bytes!
+  nftAddress: Bytes!
+  tokenId: BigInt!
+  loanValue: BigInt
+  interestRate: BigInt
+  loanPeriod: BigInt
+  timeOfLoan: BigInt
+}
+
+type ItemCancelled @entity {
+  id: ID!
+  borrower: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt! # uint256
+}
+
+type ItemListed @entity {
+  id: ID!
+  borrower: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt! # uint256
+  minLoanValue: BigInt # uint256
+  interestRate: BigInt # uint256
+  loanPeriod: BigInt # uint256
+}
+
+type ItemLoaned @entity {
+  id: ID!
+  lender: Bytes! # address
+  borrower: Bytes! #address
+  nftAddress: Bytes! # address
+  tokenId: BigInt! # uint256
+  loanValue: BigInt # uint256
+  interestRate: BigInt # uint256
+  loanPeriod: BigInt # uint256
+  timeOfLoan: BigInt #uint256
+}
+
+type LoanPayed @entity {
+  id: ID!
+  borrower: Bytes! # address
+  nftAddress: Bytes! # address
+  tokenId: BigInt! # uint256
+  loanValue: BigInt # uint256
+}
